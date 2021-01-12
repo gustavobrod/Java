@@ -10,6 +10,6 @@ export class ContaCorrente extends Conta {
     //Sobrescrevendo o método sacar
     sacar(valor){
         let taxa = 1.1;
-        return this._sacar(varlo, taxa);
+        return this._sacar(valor, taxa);
     }
 }
