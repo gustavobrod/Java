@@ -62,13 +62,21 @@
     <script>
         var n1 = new Negociacao(new Date(), 5, 700);
 
-        n1._quantidade = 1000; //não pode ser acessada com _
-        
         console.log(n1.data);
-        console.log(n1.quantidade);
-        console.log(n1.valor);
-        console.log(n1.obtemVolume);
+
+        var amanha = new Date();
+        amanha.setDate(11);
+        n1.data = amanha;
+
+        console.log(n1.data);
+
         
+
+        console.log(n1.data);
+
+        n1.data.setDate(11);
+
+        console.log(n1.data);
     </script>
     
 </body>
