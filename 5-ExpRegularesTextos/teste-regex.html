@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+<head>
+    <script>
+        var alvo = '11a22b33c';
+        
+        //REGEX VARIAVEL
+        //var exp  = new RegExp('(\\d\\d)(\\w)', 'g');
+        
+        //REGEX FIXA
+        var exp  = /(\d\d)(\w)/g;
+        console.log(exp.test(alvo));
+        
+        var resultado = null;
+        while(resultado = exp.exec(alvo)){
+            console.log(resultado);
+            console.log(exp.lastIndex);
+        }
+        
+    </script>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
