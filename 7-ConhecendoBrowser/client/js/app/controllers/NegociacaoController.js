@@ -33,6 +33,4 @@ class NegociacaoController {
         
         this._inputData.focus();
     }
-
-     
 }
