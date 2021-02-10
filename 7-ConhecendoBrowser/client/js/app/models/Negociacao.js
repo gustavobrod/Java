@@ -8,7 +8,7 @@
         Object.freeze(this);
     }
 
-    get obtemVolume() {
+    get volume() {
         return this._quantidade * this._valor; 
     }
 
