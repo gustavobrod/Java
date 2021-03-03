@@ -1,11 +1,11 @@
-import {ListaNegociacoes} from '../models/ListaNegociacoes'; 
-import {Mensagem} from '../models/Mensagem'; 
-import {NegociacoesView} from '../views/NegociacoesView'; 
-import {MensagemView} from '../views/MensagemView'; 
-import {NegociacaoService} from '../services/NegociacaoService'; 
-import {DateHelper} from '../helpers/DateHelper'; 
-import {Bind} from '../helpers/Bind'; 
-import {Negociacao} from '../models/Negociacao'; 
+import {ListaNegociacoes} from '../models/ListaNegociacoes';
+import {Mensagem} from '../models/Mensagem';
+import {NegociacoesView} from '../views/NegociacoesView';
+import {MensagemView} from '../views/MensagemView';
+import {NegociacaoService} from '../services/NegociacaoService';
+import {DateHelper} from '../helpers/DateHelper';
+import {Bind} from '../helpers/Bind';
+import {Negociacao} from '../models/Negociacao';
 
 class NegociacaoController {
     
@@ -31,28 +31,28 @@ class NegociacaoController {
         this._service = new NegociacaoService();
 
         this._init();
+
     }
     
     _init() {
-
+        
         this._service
-        .lista()
-        .then(negociacoes => 
-                negociacoes.forEach(negociacao =>
+            .lista()
+            .then(negociacoes => 
+                negociacoes.forEach(negociacao => 
                     this._listaNegociacoes.adiciona(negociacao)))
+            .catch(erro => this._mensagem.texto = erro);
             
-                    .catch(erro => this._mensagem.texto = error);
-    
         setInterval(() => {
             this.importaNegociacoes();
-        }, 3000);
+        }, 3000);                
         
     }
-    
+
     adiciona(event) {
         
         event.preventDefault();
-
+        
         let negociacao = this._criaNegociacao();
 
         this._service
@@ -65,7 +65,7 @@ class NegociacaoController {
             .catch(erro => this._mensagem.texto = erro);
     }
     
-    importaNegociacoes() {        
+    importaNegociacoes() {
 
         this._service
             .importa(this._listaNegociacoes.negociacoes)
@@ -73,21 +73,18 @@ class NegociacaoController {
                 this._listaNegociacoes.adiciona(negociacao);
                 this._mensagem.texto = 'Negociações do período importadas'   
             }))
-            .catch(error => this._mensagem.texto = error);
-            setTimeout(function() {
-
-            }, 3000)
+            .catch(erro => this._mensagem.texto = erro);                              
     }
     
     apaga() {
-
+        
         this._service
             .apaga()
             .then(mensagem => {
                 this._mensagem.texto = mensagem;
-                this._listaNegociacoes.esvazia();
+                this._listaNegociacoes.esvazia();                
             })
-            .catch(error => this._mensagem.texto = error);
+            .catch(erro => this._mensage.texto = erro);
     }
     
     _criaNegociacao() {
@@ -95,7 +92,7 @@ class NegociacaoController {
         return new Negociacao(
             DateHelper.textoParaData(this._inputData.value),
             parseInt(this._inputQuantidade.value),
-            parseFloat(this._inputValor.value));
+            parseFloat(this._inputValor.value));    
     }
     
     _limpaFormulario() {
@@ -115,4 +112,12 @@ class NegociacaoController {
         }
         this._ordemAtual = coluna;    
     }
+}
+
+let negociacaoController = new NegociacaoController();
+
+export function currentInstance() {
+
+    return negociacaoController;
+
 }
