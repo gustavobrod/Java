@@ -1,13 +1,11 @@
-var ConnectionFactory = (function(){
-
     const stores = ['negociacoes'];
     const version = 12;
     const dbName = 'aluraframe'
     
-    var connection = null;
-    var close = null;
+    let connection = null;
+    let close = null;
 
-    return class ConnectionFactory {
+    export class ConnectionFactory {
 
         constructor() {
 
@@ -63,4 +61,3 @@ var ConnectionFactory = (function(){
             }
         }
     }
-})();
